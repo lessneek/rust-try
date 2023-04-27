@@ -35,14 +35,14 @@ impl<T: Copy, const L: usize> ArrExt<T, L> for [T; L] {
 #[test]
 fn arr_fill_from() {
     let mut b = [0i32; 5];
-    b.fill_from(&vec![1, 2, 3, 4]);
+    b.fill_from(&[1, 2, 3, 4]);
     assert_eq!(b, [1, 2, 3, 4, 0]);
 
     let mut b = [0i32; 5];
-    b.fill_from(&vec![1, 2, 3, 4, 5]);
+    b.fill_from(&[1, 2, 3, 4, 5]);
     assert_eq!(b, [1, 2, 3, 4, 5]);
 
     let mut b = [0i32; 5];
-    b.fill_from(&vec![1, 2, 3, 4, 5, 6]);
+    b.fill_from(&[1, 2, 3, 4, 5, 6]);
     assert_eq!(b, [1, 2, 3, 4, 5]);
 }
