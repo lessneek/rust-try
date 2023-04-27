@@ -1,9 +1,9 @@
 pub mod store {
     use std::{cell::Cell, collections::HashMap};
 
-    type ItemId = usize;
-    type ComputeFn<T> = Box<dyn Fn(&[T]) -> T>;
-    type Items<T> = HashMap<ItemId, Item<T>>;
+    pub type ItemId = usize;
+    pub type ComputeFn<T> = Box<dyn Fn(&[T]) -> T>;
+    pub type Items<T> = HashMap<ItemId, Item<T>>;
 
     pub struct ValueComputer<T> {
         deps: Vec<ItemId>,
@@ -108,6 +108,14 @@ pub mod store {
         }
     }
 
+    impl<T> Default for Store<T> {
+        fn default() -> Self {
+            Self {
+                items: Default::default(),
+            }
+        }
+    }
+
     impl<T: Copy> Store<T> {
         pub fn new_input_item(&mut self, value: T) -> Result<ItemId, StoreError> {
             let item_id = self.get_new_item_id()?;
@@ -165,11 +173,6 @@ pub mod store {
         }
 
         pub fn update(&self, item: &Item<T>) -> Result<(), StoreError> {
-            // let item = self
-            //     .items
-            //     .get(&item_id)
-            //     .ok_or(StoreError::ItemNotFound(item_id))?;
-
             if let Item::Computed(item) = item {
                 item.update_value(&self.items)?;
             }
@@ -193,7 +196,8 @@ pub mod store {
     }
 }
 
-mod tests {
+#[cfg(test)]
+pub mod tests {
     use super::store::*;
 
     #[test]
@@ -228,5 +232,9 @@ mod tests {
             .unwrap();
 
         assert_eq!(store.get_value(computed_item_id).unwrap(), 13);
+
+        store.set_value(input_id1, 7).unwrap();
+        assert_eq!(store.get_value(input_id1).unwrap(), 7);
+        assert_eq!(store.get_value(computed_item_id).unwrap(), 19)
     }
 }

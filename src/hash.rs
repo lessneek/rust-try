@@ -1,4 +1,4 @@
-use std::collections::{BTreeSet, HashSet};
+use std::collections::BTreeSet;
 
 pub fn blablabla_hash() {
     let mut set = BTreeSet::new();

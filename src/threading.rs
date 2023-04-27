@@ -56,11 +56,6 @@ impl Foo {
 
 #[test]
 fn try_threading() {
-    let f = Foo::new(0, 100_000_000);
-    if let Some(res) = f.contains(42424242) {
-        println!("Contains: {res}");
-    }
-    else {
-        println!("Some problem!");
-    }
+    let f = Foo::new(0, 10_000_000);
+    assert!(f.contains(424242).is_some());
 }
