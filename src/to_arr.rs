@@ -13,6 +13,7 @@ impl<T: Copy, const L: usize> ToArr<T, L> for [T] {
 }
 
 #[test]
+#[allow(clippy::useless_vec)]
 fn vec_to_arr() {
     assert_eq!(vec![1, 2, 3, 4].copy_to_arr([0i32; 5]), [1, 2, 3, 4, 0]);
     assert_eq!(vec![1, 2, 3, 4, 5].copy_to_arr([0i32; 5]), [1, 2, 3, 4, 5]);
