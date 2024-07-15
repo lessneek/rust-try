@@ -206,6 +206,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "mutexxx"
+version = "0.1.0"
+
+[[package]]
 name = "num_cpus"
 version = "1.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -222,6 +226,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "081b846d1d56ddfc18fdf1a922e4f6e07a11768ea1b92dec44e42b72712ccfce"
 dependencies = [
  "memchr",
+]
+
+[[package]]
+name = "other"
+version = "0.1.0"
+dependencies = [
+ "futures",
+ "tokio",
 ]
 
 [[package]]
@@ -284,14 +296,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c82cf8cff14456045f55ec4241383baeff27af886adb72ffb2162f99911de0fd"
 dependencies = [
  "bitflags",
-]
-
-[[package]]
-name = "rust-try"
-version = "0.1.0"
-dependencies = [
- "futures",
- "tokio",
 ]
 
 [[package]]
